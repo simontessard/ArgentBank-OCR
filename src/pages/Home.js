@@ -1,6 +1,7 @@
 import Header from '../components/Header'
 import Hero from '../components/Hero'
 import Feature from '../components/Feature'
+import Footer from '../components/Footer'
 
 import chatIcon from '../assets/img/icon-chat.png'
 import moneyIcon from '../assets/img/icon-money.png'
@@ -58,6 +59,7 @@ function Home() {
           always safe."
         />
       </FeaturesContainer>
+      <Footer />
     </div>
   )
 }
