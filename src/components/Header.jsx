@@ -45,18 +45,20 @@ const StyledImg = styled.img`
 
 function Header() {
   return (
-    <StyledNav>
-      <StyledA href="./index.html">
-        <StyledImg src={logo} alt="Argent Bank Logo" />
-        <StyledH1> Argent Bank </StyledH1>
-      </StyledA>
-      <div>
-        <StyledA2 href="./sign-in.html">
-          <i class="fa fa-user-circle"></i>
-          Sign In
-        </StyledA2>
-      </div>
-    </StyledNav>
+    <header>
+      <StyledNav>
+        <StyledA href="./index.html">
+          <StyledImg src={logo} alt="Argent Bank Logo" />
+          <StyledH1> Argent Bank </StyledH1>
+        </StyledA>
+        <div>
+          <StyledA2 href="./sign-in.html">
+            <i class="fa fa-user-circle"></i>
+            Sign In
+          </StyledA2>
+        </div>
+      </StyledNav>
+    </header>
   )
 }
 
