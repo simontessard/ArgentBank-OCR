@@ -3,6 +3,7 @@ import styled from 'styled-components'
 const FeatureItem = styled.div`
   flex: 1;
   padding: 2.5rem;
+  padding-block: 4rem;
 `
 const FeatureIcon = styled.img`
   width: 100px;
