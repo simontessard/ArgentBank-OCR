@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import logo from '../assets/img/argentBankLogo.png'
+import { NavLink } from 'react-router-dom'
 
 const StyledNav = styled.nav`
   display: flex;
@@ -8,7 +9,7 @@ const StyledNav = styled.nav`
   padding: 5px 20px;
 `
 
-const StyledA = styled.a`
+const StyledNavLink = styled(NavLink)`
   display: flex;
   align-items: center;
   font-weight: bold;
@@ -28,7 +29,7 @@ const StyledH1 = styled.h1`
   width: 1px !important;
   white-space: nowrap !important; /* 3 */
 `
-const StyledA2 = styled.a`
+const StyledNavLink2 = styled(NavLink)`
   text-decoration: none;
   margin-right: 0.5rem;
   font-weight: bold;
@@ -47,16 +48,13 @@ function Header() {
   return (
     <header>
       <StyledNav>
-        <StyledA href="./index.html">
+        <StyledNavLink to="/">
           <StyledImg src={logo} alt="Argent Bank Logo" />
           <StyledH1> Argent Bank </StyledH1>
-        </StyledA>
-        <div>
-          <StyledA2 href="./sign-in.html">
-            <i class="fa fa-user-circle"></i>
-            Sign In
-          </StyledA2>
-        </div>
+        </StyledNavLink>
+        <StyledNavLink2 to="/login">
+          <i class="fa fa-user-circle"></i>Sign In
+        </StyledNavLink2>
       </StyledNav>
     </header>
   )
