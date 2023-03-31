@@ -11,6 +11,7 @@ const LoginContent = styled.section`
   margin: 0 auto;
   margin-block: 3rem;
   padding: 2rem;
+  border-radius: 5px;
 `
 const InputWrapper = styled.div`
   display: flex;
@@ -46,6 +47,7 @@ const Button = styled.button`
   background-color: #00bc77;
   color: #fff;
   cursor: pointer;
+  border-radius: 5px;
 `
 
 function Login() {
