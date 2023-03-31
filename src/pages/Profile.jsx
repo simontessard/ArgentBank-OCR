@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import Account from '../components/Account'
+import Welcome from '../components/Welcome'
 
 const MainContainer = styled.main`
   background-color: #12002b;
@@ -22,32 +23,10 @@ const AccountContainerTitle = styled.h2`
   white-space: nowrap !important; /* 3 */
 `
 
-const EditButton = styled.button`
-  border-radius: 5px;
-  border-color: #00bc77;
-  background-color: #00bc77;
-  color: #fff;
-  font-weight: bold;
-  padding: 10px;
-  cursor: pointer;
-`
-
-const Header = styled.div`
-  color: #fff;
-  margin-bottom: 2rem;
-`
-
 function Profile() {
   return (
     <MainContainer>
-      <Header>
-        <h1>
-          Welcome back
-          <br />
-          Tony Jarvis!
-        </h1>
-        <EditButton class="edit-button">Edit Name</EditButton>
-      </Header>
+      <Welcome firstName="Tony" lastName="Stark" />
       <AccountContainerTitle class="sr-only">Accounts</AccountContainerTitle>
       <Account title="Argent Bank Checking (x8349)" amount="$2,082.79" />
       <Account title="Argent Bank Savings (x6712)" amount="$10,928.42" />
