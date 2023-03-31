@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { FaUserCircle } from 'react-icons/fa'
+
 const MainContainer = styled.main`
   background-color: #12002b;
   display: flex;
@@ -30,6 +32,7 @@ const InputLabelRemember = styled.div`
 
 const InputLabelWrapper = styled.label`
   font-weight: bold;
+  margin-bottom: 0.25rem;
 `
 
 const InputWrapperInput = styled.input`
@@ -50,11 +53,16 @@ const Button = styled.button`
   border-radius: 5px;
 `
 
+const StyledFaUserCircle = styled(FaUserCircle)`
+  height: 30px;
+  width: 30px;
+`
+
 function Login() {
   return (
     <MainContainer>
       <LoginContent>
-        <i class="fa fa-user-circle sign-in-icon"></i>
+        <StyledFaUserCircle />
         <h1>Sign In</h1>
         <form>
           <InputWrapper>
