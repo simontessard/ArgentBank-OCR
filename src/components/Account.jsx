@@ -48,7 +48,7 @@ const AccountAmountDescription = styled.p`
 
 const TransactionButton = styled.button`
   border-radius: 5px;
-
+  cursor: pointer;
   display: block;
   width: 100%;
   padding: 8px;

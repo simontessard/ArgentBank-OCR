@@ -29,6 +29,7 @@ const EditButton = styled.button`
   color: #fff;
   font-weight: bold;
   padding: 10px;
+  cursor: pointer;
 `
 
 const Header = styled.div`
