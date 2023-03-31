@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import Transaction from '../components/Transaction'
+import Account from '../components/Account'
 
 const MainContainer = styled.main`
   background-color: #12002b;
@@ -36,7 +36,7 @@ const Header = styled.div`
   margin-bottom: 2rem;
 `
 
-function Account() {
+function Profile() {
   return (
     <MainContainer>
       <Header>
@@ -48,11 +48,11 @@ function Account() {
         <EditButton class="edit-button">Edit Name</EditButton>
       </Header>
       <AccountContainerTitle class="sr-only">Accounts</AccountContainerTitle>
-      <Transaction title="Argent Bank Checking (x8349)" amount="$2,082.79" />
-      <Transaction title="Argent Bank Savings (x6712)" amount="$10,928.42" />
-      <Transaction title="Argent Bank Credit Card (x8349)" amount="$184.30" />
+      <Account title="Argent Bank Checking (x8349)" amount="$2,082.79" />
+      <Account title="Argent Bank Savings (x6712)" amount="$10,928.42" />
+      <Account title="Argent Bank Credit Card (x8349)" amount="$184.30" />
     </MainContainer>
   )
 }
 
-export default Account
+export default Profile

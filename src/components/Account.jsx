@@ -63,7 +63,7 @@ const TransactionButton = styled.button`
   }
 `
 
-function Transaction({ title, amount }) {
+function Account({ title, amount }) {
   return (
     <AccountContainer>
       <AccountWrapper>
@@ -78,4 +78,4 @@ function Transaction({ title, amount }) {
   )
 }
 
-export default Transaction
+export default Account
