@@ -22,6 +22,7 @@ const HeroContent = styled.section`
   padding: 2rem;
   text-align: left;
   margin: 0 auto;
+  border-radius: 5px;
   @media (min-width: 920px) {
     position: absolute;
     top: 50px;
