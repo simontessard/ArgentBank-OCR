@@ -12,7 +12,7 @@ const AccountContainer = styled.section`
   padding: 1.5rem;
   box-sizing: border-box;
   text-align: left;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   border-radius: 5px;
   @media (min-width: 720px) {
     flex-direction: row;
