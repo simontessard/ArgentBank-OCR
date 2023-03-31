@@ -2,6 +2,8 @@ import styled from 'styled-components'
 import logo from '../assets/img/argentBankLogo.png'
 import { NavLink } from 'react-router-dom'
 
+import { FaUserCircle } from 'react-icons/fa'
+
 const StyledNav = styled.nav`
   display: flex;
   justify-content: space-between;
@@ -34,14 +36,23 @@ const StyledNavLink2 = styled(NavLink)`
   margin-right: 0.5rem;
   font-weight: bold;
   color: #2c3e50;
+  text-align: center;
   &:hover {
     text-decoration: underline;
+    color: #00bc77;
+    text-underline-offset: 3px;
   }
 `
 
 const StyledImg = styled.img`
   max-width: 100%;
   width: 200px;
+`
+
+const StyledFaUserCircle = styled(FaUserCircle)`
+  margin-right: 0.5rem;
+  position: relative;
+  top: 2px;
 `
 
 function Header() {
@@ -53,7 +64,8 @@ function Header() {
           <StyledH1> Argent Bank </StyledH1>
         </StyledNavLink>
         <StyledNavLink2 to="/login">
-          <i class="fa fa-user-circle"></i>Sign In
+          <StyledFaUserCircle />
+          Sign In
         </StyledNavLink2>
       </StyledNav>
     </header>
