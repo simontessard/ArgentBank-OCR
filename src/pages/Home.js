@@ -1,7 +1,5 @@
-import Header from '../components/Header'
 import Hero from '../components/Hero'
 import Feature from '../components/Feature'
-import Footer from '../components/Footer'
 
 import chatIcon from '../assets/img/icon-chat.png'
 import moneyIcon from '../assets/img/icon-money.png'
@@ -34,7 +32,6 @@ const StyledH2 = styled.h2`
 function Home() {
   return (
     <div>
-      <Header />
       <Hero />
       <FeaturesContainer>
         <StyledH2>Features</StyledH2>
@@ -59,7 +56,6 @@ function Home() {
           always safe."
         />
       </FeaturesContainer>
-      <Footer />
     </div>
   )
 }
