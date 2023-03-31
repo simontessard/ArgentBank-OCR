@@ -5,7 +5,7 @@ import Footer from './components/Footer'
 
 import Home from './pages/Home'
 import Login from './pages/Login'
-import Account from './pages/Account'
+import Profile from './pages/Profile'
 
 const Routing = () => {
   return (
@@ -14,7 +14,7 @@ const Routing = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/account" element={<Account />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <Footer />
     </BrowserRouter>
