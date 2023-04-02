@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { FaUserCircle } from 'react-icons/fa'
 
 import React, { useState, useRef } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import { login } from '../actions/auth'
 
@@ -69,9 +69,6 @@ const Form = (props) => {
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const { isLoggedIn } = useSelector((state) => state.auth)
-  const { message } = useSelector((state) => state.message)
-
   const dispatch = useDispatch()
 
   const onChangeUsername = (e) => {
@@ -92,16 +89,12 @@ const Form = (props) => {
     dispatch(login(username, password))
       .then(() => {
         navigate('/profile')
-        window.location.reload()
       })
       .catch(() => {
         setLoading(false)
       })
   }
 
-  if (isLoggedIn) {
-    return <Navigate to="/profile" />
-  }
   return (
     <LoginContent>
       <StyledFaUserCircle />
