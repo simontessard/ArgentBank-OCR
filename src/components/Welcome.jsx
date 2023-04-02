@@ -23,7 +23,7 @@ function Welcome({ firstName, lastName }) {
         <br />
         {firstName} {lastName}!
       </h1>
-      <EditButton class="edit-button">Edit Name</EditButton>
+      <EditButton>Edit Name</EditButton>
     </Header>
   )
 }
