@@ -2,6 +2,12 @@ import styled from 'styled-components'
 
 import { FaUserCircle } from 'react-icons/fa'
 
+import React, { useState, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Navigate, useNavigate } from 'react-router-dom'
+
+import { login } from '../actions/auth'
+
 const LoginContent = styled.section`
   box-sizing: border-box;
   background-color: white;
@@ -54,25 +60,76 @@ const StyledFaUserCircle = styled(FaUserCircle)`
   width: 30px;
 `
 
-function Form() {
+const Form = (props) => {
+  let navigate = useNavigate()
+
+  const checkBtn = useRef()
+
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const { isLoggedIn } = useSelector((state) => state.auth)
+  const { message } = useSelector((state) => state.message)
+
+  const dispatch = useDispatch()
+
+  const onChangeUsername = (e) => {
+    const username = e.target.value
+    setUsername(username)
+  }
+
+  const onChangePassword = (e) => {
+    const password = e.target.value
+    setPassword(password)
+  }
+
+  const handleLogin = (e) => {
+    e.preventDefault()
+
+    setLoading(true)
+
+    dispatch(login(username, password))
+      .then(() => {
+        navigate('/profile')
+        window.location.reload()
+      })
+      .catch(() => {
+        setLoading(false)
+      })
+  }
+
+  if (isLoggedIn) {
+    return <Navigate to="/profile" />
+  }
   return (
     <LoginContent>
       <StyledFaUserCircle />
       <h1>Sign In</h1>
-      <form>
+      <form onSubmit={handleLogin}>
         <InputWrapper>
-          <InputLabelWrapper for="username">Username</InputLabelWrapper>
-          <InputWrapperInput type="text" id="username" />
+          <InputLabelWrapper htmlFor="username">Username</InputLabelWrapper>
+          <InputWrapperInput
+            value={username}
+            onChange={onChangeUsername}
+            type="text"
+            id="username"
+          />
         </InputWrapper>
         <InputWrapper>
-          <InputLabelWrapper for="password">Password</InputLabelWrapper>
-          <InputWrapperInput type="password" id="password" />
+          <InputLabelWrapper htmlFor="password">Password</InputLabelWrapper>
+          <InputWrapperInput
+            value={password}
+            onChange={onChangePassword}
+            type="password"
+            id="password"
+          />
         </InputWrapper>
         <InputRemember>
           <input type="checkbox" id="remember-me" />
-          <InputLabelRemember for="remember-me">Remember me</InputLabelRemember>
+          <InputLabelRemember htmlFor="remember-me">Remember me</InputLabelRemember>
         </InputRemember>
-        <Button>Sign In</Button>
+        <Button ref={checkBtn}>Sign In</Button>
       </form>
     </LoginContent>
   )
