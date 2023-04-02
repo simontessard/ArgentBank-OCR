@@ -1,9 +1,9 @@
 import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, SET_MESSAGE } from './types'
 
-import AuthService from '../services/auth.service'
+import { loginService, logoutService } from '../services/auth.service'
 
 export const login = (username, password) => (dispatch) => {
-  return AuthService.login(username, password).then(
+  return loginService(username, password).then(
     (data) => {
       dispatch({
         type: LOGIN_SUCCESS,
@@ -31,7 +31,7 @@ export const login = (username, password) => (dispatch) => {
 }
 
 export const logout = () => (dispatch) => {
-  AuthService.logout()
+  logoutService()
   dispatch({
     type: LOGOUT,
   })
