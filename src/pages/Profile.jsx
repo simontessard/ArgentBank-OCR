@@ -3,6 +3,10 @@ import styled from 'styled-components'
 import Account from '../components/Account'
 import Welcome from '../components/Welcome'
 
+import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { getUserProfile } from '../services/user.service'
+
 const MainContainer = styled.main`
   background-color: #12002b;
   flex: 1;
@@ -24,9 +28,34 @@ const AccountContainerTitle = styled.h2`
 `
 
 function Profile() {
+  const { token } = useSelector((state) => state.auth)
+  console.log(token)
+
+  const [content, setContent] = useState('')
+  const [firstName, setfirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+
+  useEffect(() => {
+    getUserProfile(token).then(
+      (response) => {
+        setContent(response)
+        setfirstName(response.body.firstName)
+        setLastName(response.body.lastName)
+      },
+      (error) => {
+        const _content =
+          (error.response && error.response.data && error.response.data.message) ||
+          error.message ||
+          error.toString()
+
+        setContent(_content)
+      }
+    )
+  }, [token]) // Appeler getUserProfile uniquement si currentToken change
+
   return (
     <MainContainer>
-      <Welcome firstName="Tony" lastName="Stark" />
+      <Welcome firstName={firstName} lastName={lastName} />
       <AccountContainerTitle>Accounts</AccountContainerTitle>
       <Account title="Argent Bank Checking (x8349)" amount="$2,082.79" />
       <Account title="Argent Bank Savings (x6712)" amount="$10,928.42" />
