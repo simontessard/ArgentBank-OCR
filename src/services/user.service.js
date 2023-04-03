@@ -12,3 +12,18 @@ export const getUserProfile = (token) => {
       throw error.response.data
     })
 }
+
+export const updateUserProfile = (newFirstName, newLastName, token) => {
+  return axios
+    .put(
+      API_URL + 'profile',
+      { firstName: newFirstName, lastName: newLastName },
+      { headers: { Authorization: 'Bearer ' + token } }
+    )
+    .then((response) => {
+      return response.data
+    })
+    .catch((error) => {
+      throw error.response.data
+    })
+}

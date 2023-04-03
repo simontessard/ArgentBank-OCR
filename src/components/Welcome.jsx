@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+
+import { updateUserProfile } from '../services/user.service'
 
 const EditButton = styled.button`
   border-radius: 5px;
@@ -68,7 +71,18 @@ function Welcome({ firstName, lastName }) {
   const [editedFirstName, setEditedFirstName] = useState(firstName)
   const [editedLastName, setEditedLastName] = useState(lastName)
 
+  const { token } = useSelector((state) => state.auth)
+
   const handleSave = () => {
+    updateUserProfile(editedFirstName, editedLastName, token)
+      .then((data) => {
+        console.log(data)
+      })
+      .catch((error) => {
+        // Traitez l'erreur ici
+        console.error(error)
+      })
+
     setIsEditing(false)
   }
 
@@ -83,11 +97,15 @@ function Welcome({ firstName, lastName }) {
           <LabelCustom>First name</LabelCustom>
           <Input
             type="text"
-            value={firstName}
+            value={editedFirstName}
             onChange={(e) => setEditedFirstName(e.target.value)}
           />
           <LabelCustom>Last name</LabelCustom>
-          <Input type="text" value={lastName} onChange={(e) => setEditedLastName(e.target.value)} />
+          <Input
+            type="text"
+            value={editedLastName}
+            onChange={(e) => setEditedLastName(e.target.value)}
+          />
           <ContainerButtons>
             <CancelButton onClick={handleCancel}>Cancel</CancelButton>
             <SubmitButton onClick={handleSave}>Save</SubmitButton>
@@ -98,7 +116,7 @@ function Welcome({ firstName, lastName }) {
           <h1>
             Welcome back
             <br />
-            {firstName} {lastName}!
+            {editedFirstName} {editedLastName}!
           </h1>
           <EditButton onClick={() => setIsEditing(true)}>Edit Name</EditButton>
         </WelcomeMessage>
