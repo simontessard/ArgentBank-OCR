@@ -27,17 +27,14 @@ const SubmitButton = styled.button`
   cursor: pointer;
   border-radius: 5px;
 `
-
 const CancelButton = styled(SubmitButton)`
   background-color: red;
   border-color: red;
 `
-
 const WelcomeMessage = styled.div`
   margin-bottom: 2rem;
   color: #fff;
 `
-
 const EditContainer = styled.div`
   margin-bottom: 2rem;
   display: flex;
@@ -49,7 +46,6 @@ const Input = styled.input`
   padding: 8px;
   margin-top: 0rem;
 `
-
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -58,7 +54,6 @@ const ContainerButtons = styled.div`
   display: flex;
   gap: 0.75rem;
 `
-
 const LabelCustom = styled.label`
   color: white;
   font-size: 18px;
