@@ -11,6 +11,7 @@ const MainContainer = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 5rem;
 `
 function Login() {
   const { isLoggedIn } = useSelector((state) => state.auth)
