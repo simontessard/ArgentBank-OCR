@@ -3,7 +3,7 @@ import logo from '../assets/img/argentBankLogo.png'
 import { NavLink } from 'react-router-dom'
 
 import { FaUserCircle } from 'react-icons/fa'
-import { GrLogout } from 'react-icons/gr'
+import { FiLogOut } from 'react-icons/fi'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { useCallback } from 'react'
@@ -50,6 +50,12 @@ const StyledNavLink2 = styled(NavLink)`
   }
 `
 
+const StyledNavLink3 = styled(StyledNavLink2)`
+  &:hover {
+    color: red;
+  }
+`
+
 const StyledImg = styled.img`
   max-width: 100%;
   width: 200px;
@@ -61,7 +67,7 @@ const StyledFaUserCircle = styled(FaUserCircle)`
   top: 2px;
 `
 
-const StyledGrLogout = styled(GrLogout)`
+const StyledGrLogout = styled(FiLogOut)`
   margin-right: 0.5rem;
   position: relative;
   top: 2px;
@@ -100,10 +106,10 @@ function Header() {
             </StyledNavLink2>
           )}
           {isLoggedIn && (
-            <StyledNavLink2 to="/" onClick={logOut}>
+            <StyledNavLink3 to="/" onClick={logOut}>
               <StyledGrLogout />
-              Logout
-            </StyledNavLink2>
+              Sign Out
+            </StyledNavLink3>
           )}
         </RightContainer>
       </StyledNav>
