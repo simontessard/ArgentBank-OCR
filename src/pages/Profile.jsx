@@ -10,7 +10,8 @@ import { getUserProfile } from '../services/user.service'
 const MainContainer = styled.main`
   background-color: #12002b;
   flex: 1;
-  padding-block: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 6rem;
 `
 
 const AccountContainerTitle = styled.h2`
