@@ -31,7 +31,6 @@ const AccountContainerTitle = styled.h2`
 
 function Profile() {
   const { token } = useSelector((state) => state.auth)
-  console.log(token)
 
   const [content, setContent] = useState('')
   const [firstName, setfirstName] = useState('')
