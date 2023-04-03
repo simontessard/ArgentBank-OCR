@@ -76,14 +76,12 @@ function Welcome({ firstName, lastName }) {
   const handleSave = () => {
     updateUserProfile(editedFirstName, editedLastName, token)
       .then((data) => {
+        setIsEditing(false)
         console.log(data)
       })
       .catch((error) => {
-        // Traitez l'erreur ici
         console.error(error)
       })
-
-    setIsEditing(false)
   }
 
   const handleCancel = () => {
