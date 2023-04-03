@@ -39,7 +39,7 @@ const StyledH1 = styled.h1`
 `
 const StyledNavLink2 = styled(NavLink)`
   text-decoration: none;
-  margin-right: 0.5rem;
+  margin-right: 1.25rem;
   font-weight: bold;
   color: #2c3e50;
   text-align: center;
@@ -91,6 +91,12 @@ function Header() {
             <StyledNavLink2 to="/login">
               <StyledFaUserCircle />
               Sign In
+            </StyledNavLink2>
+          )}
+          {isLoggedIn && (
+            <StyledNavLink2 to="/profile">
+              <StyledFaUserCircle />
+              Profile
             </StyledNavLink2>
           )}
           {isLoggedIn && (
