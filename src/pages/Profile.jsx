@@ -33,15 +33,17 @@ function Profile() {
   const { token } = useSelector((state) => state.auth)
 
   const [content, setContent] = useState('')
-  const [firstName, setfirstName] = useState('')
+  const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     getUserProfile(token).then(
       (response) => {
         setContent(response)
-        setfirstName(response.body.firstName)
+        setFirstName(response.body.firstName)
         setLastName(response.body.lastName)
+        setIsLoading(false)
       },
       (error) => {
         const _content =
@@ -50,6 +52,7 @@ function Profile() {
           error.toString()
 
         setContent(_content)
+        setIsLoading(false)
       }
     )
   }, [token]) // Appeler getUserProfile uniquement si currentToken change
@@ -62,11 +65,17 @@ function Profile() {
 
   return (
     <MainContainer>
-      <Welcome firstName={firstName} lastName={lastName} />
-      <AccountContainerTitle>Accounts</AccountContainerTitle>
-      <Account title="Argent Bank Checking (x8349)" amount="$2,082.79" />
-      <Account title="Argent Bank Savings (x6712)" amount="$10,928.42" />
-      <Account title="Argent Bank Credit Card (x8349)" amount="$184.30" />
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <>
+          <Welcome firstName={firstName} lastName={lastName} />
+          <AccountContainerTitle>Accounts</AccountContainerTitle>
+          <Account title="Argent Bank Checking (x8349)" amount="$2,082.79" />
+          <Account title="Argent Bank Savings (x6712)" amount="$10,928.42" />
+          <Account title="Argent Bank Credit Card (x8349)" amount="$184.30" />
+        </>
+      )}
     </MainContainer>
   )
 }
