@@ -3,6 +3,12 @@ import logo from '../assets/img/argentBankLogo.png'
 import { NavLink } from 'react-router-dom'
 
 import { FaUserCircle } from 'react-icons/fa'
+import { GrLogout } from 'react-icons/gr'
+
+import { useSelector, useDispatch } from 'react-redux'
+import { useCallback } from 'react'
+
+import { logout } from '../actions/auth'
 
 const StyledNav = styled.nav`
   display: flex;
@@ -55,7 +61,24 @@ const StyledFaUserCircle = styled(FaUserCircle)`
   top: 2px;
 `
 
+const StyledGrLogout = styled(GrLogout)`
+  margin-right: 0.5rem;
+  position: relative;
+  top: 2px;
+`
+
+const RightContainer = styled.div`
+  display: flex;
+  align-items: center;
+`
+
 function Header() {
+  const { isLoggedIn } = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
+  const logOut = useCallback(() => {
+    dispatch(logout())
+  }, [dispatch])
+
   return (
     <header>
       <StyledNav>
@@ -63,10 +86,20 @@ function Header() {
           <StyledImg src={logo} alt="Argent Bank Logo" />
           <StyledH1> Argent Bank </StyledH1>
         </StyledNavLink>
-        <StyledNavLink2 to="/login">
-          <StyledFaUserCircle />
-          Sign In
-        </StyledNavLink2>
+        <RightContainer>
+          {!isLoggedIn && (
+            <StyledNavLink2 to="/login">
+              <StyledFaUserCircle />
+              Sign In
+            </StyledNavLink2>
+          )}
+          {isLoggedIn && (
+            <StyledNavLink2 to="/" onClick={logOut}>
+              <StyledGrLogout />
+              Logout
+            </StyledNavLink2>
+          )}
+        </RightContainer>
       </StyledNav>
     </header>
   )
