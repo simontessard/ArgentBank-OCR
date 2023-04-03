@@ -5,6 +5,7 @@ import Welcome from '../components/Welcome'
 
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { Navigate } from 'react-router-dom'
 import { getUserProfile } from '../services/user.service'
 
 const MainContainer = styled.main`
@@ -53,6 +54,12 @@ function Profile() {
       }
     )
   }, [token]) // Appeler getUserProfile uniquement si currentToken change
+
+  const { isLoggedIn } = useSelector((state) => state.auth)
+
+  if (!isLoggedIn) {
+    return <Navigate to="/" />
+  }
 
   return (
     <MainContainer>
