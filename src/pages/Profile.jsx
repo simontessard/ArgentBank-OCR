@@ -32,7 +32,6 @@ const AccountContainerTitle = styled.h2`
 function Profile() {
   const { token } = useSelector((state) => state.auth)
 
-  const [content, setContent] = useState('')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [isLoading, setIsLoading] = useState(true)
@@ -40,22 +39,16 @@ function Profile() {
   useEffect(() => {
     getUserProfile(token).then(
       (response) => {
-        setContent(response)
         setFirstName(response.body.firstName)
         setLastName(response.body.lastName)
         setIsLoading(false)
       },
       (error) => {
-        const _content =
-          (error.response && error.response.data && error.response.data.message) ||
-          error.message ||
-          error.toString()
-
-        setContent(_content)
+        console.log(error)
         setIsLoading(false)
       }
     )
-  }, [token]) // Appeler getUserProfile uniquement si currentToken change
+  }, [token]) // Calling getUserProfile only when token change
 
   const { isLoggedIn } = useSelector((state) => state.auth)
 
