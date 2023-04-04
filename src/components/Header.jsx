@@ -80,6 +80,8 @@ const RightContainer = styled.div`
 
 function Header() {
   const { isLoggedIn } = useSelector((state) => state.auth)
+  const { user } = useSelector((state) => state.auth)
+
   const dispatch = useDispatch()
   const logOut = useCallback(() => {
     dispatch(logout())
@@ -102,7 +104,7 @@ function Header() {
           {isLoggedIn && (
             <StyledNavLink2 to="/profile">
               <StyledFaUserCircle />
-              Profile
+              {user.firstName}
             </StyledNavLink2>
           )}
           {isLoggedIn && (
