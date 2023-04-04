@@ -6,7 +6,7 @@ import React, { useState, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { login } from '../actions/auth'
+import { loginUser } from '../actions/auth'
 
 const LoginContent = styled.section`
   box-sizing: border-box;
@@ -86,7 +86,7 @@ const Form = (props) => {
 
     setLoading(true)
 
-    dispatch(login(username, password))
+    dispatch(loginUser(username, password))
       .then(() => {
         navigate('/profile')
       })
