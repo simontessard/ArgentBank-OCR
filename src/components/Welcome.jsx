@@ -3,8 +3,10 @@ import styled from 'styled-components'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import { updateUserProfileService } from '../services/user.service'
+import { updateUserProfile } from '../actions/profile'
 import ErrorMessage from '../components/ErrorMessage'
+
+import { useDispatch } from 'react-redux'
 
 const EditButton = styled.button`
   border-radius: 5px;
@@ -70,10 +72,12 @@ function Welcome({ firstName, lastName }) {
 
   const { token } = useSelector((state) => state.auth)
 
+  const dispatch = useDispatch()
+
   const handleSave = () => {
     // Preventing sending empty values
     if (editedFirstName && editedLastName) {
-      updateUserProfileService(editedFirstName, editedLastName, token)
+      dispatch(updateUserProfile(editedFirstName, editedLastName, token))
         .then((data) => {
           setIsEditing(false)
           setError(false)
