@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const API_URL = 'http://localhost:3001/api/v1/user/'
 
+// Call a POST request to the API to get the user profile
 export const getUserProfile = (token) => {
   return axios
     .post(API_URL + 'profile', {}, { headers: { Authorization: 'Bearer ' + token } })
@@ -13,6 +14,7 @@ export const getUserProfile = (token) => {
     })
 }
 
+// Call a PUT request to the API to update the user profile
 export const updateUserProfile = (newFirstName, newLastName, token) => {
   return axios
     .put(
