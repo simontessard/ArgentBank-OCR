@@ -122,7 +122,9 @@ const Form = (props) => {
           <input type="checkbox" id="remember-me" />
           <InputLabelRemember htmlFor="remember-me">Remember me</InputLabelRemember>
         </InputRemember>
-        <Button ref={checkBtn}>Sign In</Button>
+        <Button ref={checkBtn} disabled={loading}>
+          {loading ? 'Loading...' : 'Sign In'}
+        </Button>
       </form>
     </LoginContent>
   )
