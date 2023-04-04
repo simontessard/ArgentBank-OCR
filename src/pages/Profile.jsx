@@ -6,7 +6,9 @@ import Welcome from '../components/Welcome'
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
-import { getUserProfileService } from '../services/user.service'
+import { getUserProfile } from '../actions/auth'
+
+import { useDispatch } from 'react-redux'
 
 const MainContainer = styled.main`
   background-color: #12002b;
@@ -31,24 +33,21 @@ const AccountContainerTitle = styled.h2`
 
 function Profile() {
   const { token } = useSelector((state) => state.auth)
+  const { user } = useSelector((state) => state.auth)
 
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
   const [isLoading, setIsLoading] = useState(true)
 
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    getUserProfileService(token).then(
-      (response) => {
-        setFirstName(response.body.firstName)
-        setLastName(response.body.lastName)
-        setIsLoading(false)
-      },
-      (error) => {
+    dispatch(getUserProfile(token))
+      .catch((error) => {
         console.log(error)
+      })
+      .finally(() => {
         setIsLoading(false)
-      }
-    )
-  }, [token]) // Calling getUserProfile only when token change
+      })
+  }, [dispatch, token])
 
   const { isLoggedIn } = useSelector((state) => state.auth)
 
@@ -62,7 +61,7 @@ function Profile() {
         <div>Loading...</div>
       ) : (
         <>
-          <Welcome firstName={firstName} lastName={lastName} />
+          <Welcome firstName={user.firstName} lastName={user.lastName} />
           <AccountContainerTitle>Accounts</AccountContainerTitle>
           <Account title="Argent Bank Checking (x8349)" amount="$2,082.79" />
           <Account title="Argent Bank Savings (x6712)" amount="$10,928.42" />
