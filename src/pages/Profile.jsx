@@ -6,7 +6,7 @@ import Welcome from '../components/Welcome'
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
-import { getUserProfile } from '../services/user.service'
+import { getUserProfileService } from '../services/user.service'
 
 const MainContainer = styled.main`
   background-color: #12002b;
@@ -37,7 +37,7 @@ function Profile() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    getUserProfile(token).then(
+    getUserProfileService(token).then(
       (response) => {
         setFirstName(response.body.firstName)
         setLastName(response.body.lastName)

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import { updateUserProfile } from '../services/user.service'
+import { updateUserProfileService } from '../services/user.service'
 import ErrorMessage from '../components/ErrorMessage'
 
 const EditButton = styled.button`
@@ -73,7 +73,7 @@ function Welcome({ firstName, lastName }) {
   const handleSave = () => {
     // Preventing sending empty values
     if (editedFirstName.length > 0 && editedLastName.length > 0) {
-      updateUserProfile(editedFirstName, editedLastName, token)
+      updateUserProfileService(editedFirstName, editedLastName, token)
         .then((data) => {
           setIsEditing(false)
           setError(false)
