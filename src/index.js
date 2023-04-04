@@ -9,6 +9,8 @@ import store from './store'
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <Provider store={store}>
-    <Routing />
+    <React.StrictMode>
+      <Routing />
+    </React.StrictMode>
   </Provider>
 )

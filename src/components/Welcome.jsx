@@ -72,7 +72,7 @@ function Welcome({ firstName, lastName }) {
 
   const handleSave = () => {
     // Preventing sending empty values
-    if (editedFirstName.length > 0 && editedLastName.length > 0) {
+    if (editedFirstName && editedLastName) {
       updateUserProfileService(editedFirstName, editedLastName, token)
         .then((data) => {
           setIsEditing(false)
