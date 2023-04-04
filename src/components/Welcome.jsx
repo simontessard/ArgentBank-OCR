@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import { updateUserProfile } from '../services/user.service'
+import ErrorMessage from '../components/ErrorMessage'
 
 const EditButton = styled.button`
   border-radius: 5px;
@@ -65,18 +66,24 @@ function Welcome({ firstName, lastName }) {
   const [isEditing, setIsEditing] = useState(false)
   const [editedFirstName, setEditedFirstName] = useState(firstName)
   const [editedLastName, setEditedLastName] = useState(lastName)
+  const [error, setError] = useState(false)
 
   const { token } = useSelector((state) => state.auth)
 
   const handleSave = () => {
-    updateUserProfile(editedFirstName, editedLastName, token)
-      .then((data) => {
-        setIsEditing(false)
-        console.log(data)
-      })
-      .catch((error) => {
-        console.error(error)
-      })
+    // Preventing sending empty values
+    if (editedFirstName.length > 0 && editedLastName.length > 0) {
+      updateUserProfile(editedFirstName, editedLastName, token)
+        .then((data) => {
+          setIsEditing(false)
+          setError(false)
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    } else {
+      setError(true)
+    }
   }
 
   const handleCancel = () => {
@@ -87,6 +94,7 @@ function Welcome({ firstName, lastName }) {
     <Container>
       {isEditing ? (
         <EditContainer>
+          {error && <ErrorMessage error="Empty field" />}
           <LabelCustom>First name</LabelCustom>
           <Input
             type="text"
