@@ -31,16 +31,6 @@ export const loginUser = (username, password) => (dispatch) => {
   )
 }
 
-export const getUserProfile = (token) => (dispatch) => {
-  return getUserProfileService(token).then((data) => {
-    dispatch({
-      type: GET_USER,
-      payload: { user: data.body },
-    })
-    return Promise.resolve()
-  })
-}
-
 export const logout = () => (dispatch) => {
   logoutService()
   dispatch({
