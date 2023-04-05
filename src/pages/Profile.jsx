@@ -34,6 +34,7 @@ const AccountContainerTitle = styled.h2`
 function Profile() {
   const { token } = useSelector((state) => state.auth)
   const { user } = useSelector((state) => state.auth)
+  const { rememberMe } = useSelector((state) => state.auth)
 
   const [isLoading, setIsLoading] = useState(true)
 
@@ -51,7 +52,7 @@ function Profile() {
 
   const { isLoggedIn } = useSelector((state) => state.auth)
 
-  if (!isLoggedIn) {
+  if (!isLoggedIn && !rememberMe) {
     return <Navigate to="/" />
   }
 

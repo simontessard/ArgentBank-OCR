@@ -15,9 +15,14 @@ const MainContainer = styled.main`
 `
 function Login() {
   const { isLoggedIn } = useSelector((state) => state.auth)
+  const { rememberMe } = useSelector((state) => state.auth)
   const { message } = useSelector((state) => state.message)
 
   if (isLoggedIn) {
+    return <Navigate to="/profile" />
+  }
+
+  if (rememberMe) {
     return <Navigate to="/profile" />
   }
 

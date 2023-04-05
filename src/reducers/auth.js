@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, GET_USER } from '../actions/types'
+import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, GET_USER, LOGOUT_REMEMBER } from '../actions/types'
 
 const user = JSON.parse(localStorage.getItem('user'))
 const token = localStorage.getItem('token')
@@ -17,6 +17,7 @@ export default function authReducer(state = initialState, action) {
         isLoggedIn: true,
         user: payload.user,
         token: payload.user.body.token,
+        rememberMe: payload.rememberMe,
       }
     case LOGIN_FAIL:
       return {
@@ -28,12 +29,19 @@ export default function authReducer(state = initialState, action) {
       return {
         ...state,
         user: payload.user,
+        isLoggedIn: true,
       }
     case LOGOUT:
       return {
         ...state,
         isLoggedIn: false,
         user: null,
+        token: null,
+      }
+    case LOGOUT_REMEMBER:
+      return {
+        ...state,
+        isLoggedIn: false,
       }
     default:
       return state

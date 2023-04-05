@@ -81,11 +81,12 @@ const RightContainer = styled.div`
 function Header() {
   const { isLoggedIn } = useSelector((state) => state.auth)
   const { user } = useSelector((state) => state.auth)
+  const { rememberMe } = useSelector((state) => state.auth)
 
   const dispatch = useDispatch()
   const logOut = useCallback(() => {
-    dispatch(logout())
-  }, [dispatch])
+    dispatch(logout(rememberMe))
+  }, [dispatch, rememberMe])
 
   return (
     <header>

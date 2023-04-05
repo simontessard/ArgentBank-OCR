@@ -68,6 +68,7 @@ const Form = (props) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
+  const [rememberMe, setRememberMe] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -81,12 +82,17 @@ const Form = (props) => {
     setPassword(password)
   }
 
+  const onChangeRememberMe = (e) => {
+    const checked = e.target.checked
+    setRememberMe(checked)
+  }
+
   const handleLogin = (e) => {
     e.preventDefault()
 
     setLoading(true)
 
-    dispatch(loginUser(username, password))
+    dispatch(loginUser(username, password, rememberMe))
       .then(() => {
         navigate('/profile')
       })
@@ -119,7 +125,7 @@ const Form = (props) => {
           />
         </InputWrapper>
         <InputRemember>
-          <input type="checkbox" id="remember-me" />
+          <input type="checkbox" id="remember-me" onChange={onChangeRememberMe} />
           <InputLabelRemember htmlFor="remember-me">Remember me</InputLabelRemember>
         </InputRemember>
         <Button ref={checkBtn} disabled={loading}>
