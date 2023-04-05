@@ -97,25 +97,7 @@ function Welcome({ firstName, lastName }) {
   return (
     <Container>
       {isEditing ? (
-        <EditContainer>
-          {error && <ErrorMessage error="Empty field" />}
-          <LabelCustom>First name</LabelCustom>
-          <Input
-            type="text"
-            value={editedFirstName}
-            onChange={(e) => setEditedFirstName(e.target.value)}
-          />
-          <LabelCustom>Last name</LabelCustom>
-          <Input
-            type="text"
-            value={editedLastName}
-            onChange={(e) => setEditedLastName(e.target.value)}
-          />
-          <ContainerButtons>
-            <CancelButton onClick={handleCancel}>Cancel</CancelButton>
-            <SubmitButton onClick={handleSave}>Save</SubmitButton>
-          </ContainerButtons>
-        </EditContainer>
+        EditProfile()
       ) : (
         <WelcomeMessage>
           <h1>
@@ -128,6 +110,30 @@ function Welcome({ firstName, lastName }) {
       )}
     </Container>
   )
+
+  function EditProfile() {
+    return (
+      <EditContainer>
+        {error && <ErrorMessage error="Empty field" />}
+        <LabelCustom>First name</LabelCustom>
+        <Input
+          type="text"
+          value={editedFirstName}
+          onChange={(e) => setEditedFirstName(e.target.value)}
+        />
+        <LabelCustom>Last name</LabelCustom>
+        <Input
+          type="text"
+          value={editedLastName}
+          onChange={(e) => setEditedLastName(e.target.value)}
+        />
+        <ContainerButtons>
+          <CancelButton onClick={handleCancel}>Cancel</CancelButton>
+          <SubmitButton onClick={handleSave}>Save</SubmitButton>
+        </ContainerButtons>
+      </EditContainer>
+    )
+  }
 }
 
 export default Welcome
