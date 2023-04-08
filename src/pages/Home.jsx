@@ -9,6 +9,7 @@ import styled from 'styled-components'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { getUserProfile } from '../actions/profile'
+import React, { useEffect } from 'react'
 
 const FeaturesContainer = styled.div`
   display: flex;
@@ -37,9 +38,13 @@ function Home() {
   const { rememberMe } = useSelector((state) => state.auth)
 
   const dispatch = useDispatch()
-  if (rememberMe) {
-    dispatch(getUserProfile(token))
-  }
+  useEffect(() => {
+    if (rememberMe) {
+      dispatch(getUserProfile(token)).catch((error) => {
+        console.log(error)
+      })
+    }
+  }, [dispatch, rememberMe, token])
 
   return (
     <div>
