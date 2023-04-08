@@ -23,7 +23,7 @@ function Login() {
   }
 
   if (rememberMe) {
-    return <Navigate to="/profile" />
+    return <Navigate to="/" />
   }
 
   return (

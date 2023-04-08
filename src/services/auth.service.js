@@ -18,4 +18,6 @@ export const loginService = (email, password) => {
 
 export const logoutService = () => {
   localStorage.removeItem('user')
+  localStorage.removeItem('token')
+  localStorage.removeItem('rememberMe')
 }

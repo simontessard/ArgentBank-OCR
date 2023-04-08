@@ -7,6 +7,9 @@ import securityIcon from '../assets/img/icon-security.png'
 
 import styled from 'styled-components'
 
+import { useSelector, useDispatch } from 'react-redux'
+import { getUserProfile } from '../actions/profile'
+
 const FeaturesContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -30,6 +33,14 @@ const StyledH2 = styled.h2`
 `
 
 function Home() {
+  const { token } = useSelector((state) => state.auth)
+  const { rememberMe } = useSelector((state) => state.auth)
+
+  const dispatch = useDispatch()
+  if (rememberMe) {
+    dispatch(getUserProfile(token))
+  }
+
   return (
     <div>
       <Hero />

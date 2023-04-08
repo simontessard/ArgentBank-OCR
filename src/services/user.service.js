@@ -7,6 +7,7 @@ export const getUserProfileService = (token) => {
   return axios
     .post(API_URL + 'profile', {}, { headers: { Authorization: 'Bearer ' + token } })
     .then((response) => {
+      localStorage.setItem('token', JSON.stringify(token))
       return response.data
     })
     .catch((error) => {

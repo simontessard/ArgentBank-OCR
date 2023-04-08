@@ -1,10 +1,11 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, SET_MESSAGE, LOGOUT_REMEMBER } from './types'
+import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, SET_MESSAGE } from './types'
 
 import { loginService, logoutService } from '../services/auth.service'
 
 export const loginUser = (username, password, rememberMe) => (dispatch) => {
   return loginService(username, password, rememberMe).then(
     (data) => {
+      localStorage.setItem('rememberMe', JSON.stringify(rememberMe))
       dispatch({
         type: LOGIN_SUCCESS,
         payload: { user: data, rememberMe: rememberMe },
@@ -30,16 +31,9 @@ export const loginUser = (username, password, rememberMe) => (dispatch) => {
   )
 }
 
-export const logout = (rememberMe) => (dispatch) => {
-  if (rememberMe) {
-    logoutService()
-    dispatch({
-      type: LOGOUT_REMEMBER,
-    })
-  } else {
-    logoutService()
-    dispatch({
-      type: LOGOUT,
-    })
-  }
+export const logout = () => (dispatch) => {
+  logoutService()
+  dispatch({
+    type: LOGOUT,
+  })
 }
